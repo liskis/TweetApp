@@ -49,5 +49,9 @@ extension HomeViewController: UITableViewDataSource{
         cell.setCell(tweetData: tweetDataList[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
 }
 
