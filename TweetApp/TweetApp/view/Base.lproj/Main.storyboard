@@ -3,6 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,12 +21,30 @@
                                 <rect key="frame" x="0.0" y="94" width="375" height="684"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jj3-hq-l3Q">
+                                <rect key="frame" x="275" y="678" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="pa6-3D-WaX"/>
+                                    <constraint firstAttribute="width" constant="70" id="tMy-DM-DDV"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" cornerStyle="capsule">
+                                    <imageReference key="image" image="pencil.line" catalog="system" symbolScale="large" renderingMode="template"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemBlueColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m1p-IR-KgR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6wP-x1-lQu" secondAttribute="trailing" id="4ri-66-L5r"/>
+                            <constraint firstAttribute="trailing" secondItem="Jj3-hq-l3Q" secondAttribute="trailing" constant="30" id="9E3-ek-sO0"/>
                             <constraint firstItem="6wP-x1-lQu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RbF-99-kHH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Jj3-hq-l3Q" secondAttribute="bottom" constant="30" id="es1-IA-J8F"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6wP-x1-lQu" secondAttribute="bottom" id="k8v-Fs-390"/>
                             <constraint firstItem="6wP-x1-lQu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yUD-ca-DgM"/>
                         </constraints>
@@ -37,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="29"/>
+            <point key="canvasLocation" x="536.79999999999995" y="28.817733990147783"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EiK-qD-pMH">
@@ -57,8 +76,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="pencil.line" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

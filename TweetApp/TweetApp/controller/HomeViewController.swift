@@ -9,19 +9,28 @@
 import Foundation
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate {
+class HomeViewController: UIViewController {
     @IBOutlet weak var tweetView: UITableView!
+    
+    @IBAction func addButton(_ sender: UIButton) {
+        transitionToEditorView()
+    }
     var tweetDataList: [TweetDataModel] = []
     var cellHeight: [CGFloat] = []
     
     override func viewDidLoad() {
         tweetView.dataSource = self
-        tweetView.delegate = self
         tweetView.rowHeight = UITableView.automaticDimension
         tweetView.estimatedRowHeight = 10000
         tweetView.tableFooterView = UIView()
         tweetView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         setTweetData()
+    }
+    
+    func transitionToEditorView() {
+        let storyboard = UIStoryboard(name: "TweetEdit", bundle: nil)
+        guard let tweetEditViewController = storyboard.instantiateInitialViewController() as? TweetEditViewController else { return }
+        present(tweetEditViewController, animated: true)
     }
     
     func setTweetData(){
