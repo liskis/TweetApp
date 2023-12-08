@@ -9,7 +9,7 @@ import UIKit
 
 class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var tweet: UILabel!
+    @IBOutlet weak var tweet: UITextView!
     @IBOutlet weak var created: UILabel!
     
     var dateFormatter: DateFormatter {

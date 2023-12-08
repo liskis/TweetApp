@@ -12,11 +12,13 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tweetView: UITableView!
     var tweetDataList: [TweetDataModel] = []
+    var cellHeight: [CGFloat] = []
     
     override func viewDidLoad() {
         tweetView.dataSource = self
         tweetView.delegate = self
         tweetView.rowHeight = UITableView.automaticDimension
+        tweetView.estimatedRowHeight = 10000
         tweetView.tableFooterView = UIView()
         tweetView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         setTweetData()
@@ -24,9 +26,13 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     func setTweetData(){
         for i in 1...5 {
+            var tweet = ""
+            for _ in 0...i {
+                tweet.append("このツイートは\(i)番目のツイートです。")
+            }
             let tweetData = TweetDataModel(
-                userName: "testUser",
-                tweet: "このツイートは\(i)番目のツイートです。このツイートは\(i)番目のツイートです。このツイートは\(i)番目のツイートです。",
+                userName: "testUser(\(i))",
+                tweet: tweet,
                 created: Date()
             )
             tweetDataList.append(tweetData)
@@ -48,10 +54,6 @@ extension HomeViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath ) as! HomeTableViewCell
         cell.setCell(tweetData: tweetDataList[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
     }
 }
 
