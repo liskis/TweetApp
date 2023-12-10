@@ -21,7 +21,6 @@
 		09A65AC32B215EC300DB2B4F /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09A65AC12B215EC300DB2B4F /* HomeTableViewCell.xib */; };
 		09A65AC72B23205200DB2B4F /* TweetEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A65AC62B23205200DB2B4F /* TweetEditViewController.swift */; };
 		09A65AC92B23345600DB2B4F /* TweetEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A65AC82B23345600DB2B4F /* TweetEdit.storyboard */; };
-		09A65AD12B25656500DB2B4F /* UITweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A65AD02B25656500DB2B4F /* UITweetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +59,6 @@
 		09A65AC12B215EC300DB2B4F /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 		09A65AC62B23205200DB2B4F /* TweetEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetEditViewController.swift; sourceTree = "<group>"; };
 		09A65AC82B23345600DB2B4F /* TweetEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TweetEdit.storyboard; sourceTree = "<group>"; };
-		09A65AD02B25656500DB2B4F /* UITweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITweetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +153,6 @@
 				09A65AC02B215EC300DB2B4F /* HomeTableViewCell.swift */,
 				09A65AC62B23205200DB2B4F /* TweetEditViewController.swift */,
 				09A65A922B215C6D00DB2B4F /* HomeViewController.swift */,
-				09A65AD02B25656500DB2B4F /* UITweetView.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -313,7 +310,6 @@
 				09A65A932B215C6D00DB2B4F /* HomeViewController.swift in Sources */,
 				09A65AC22B215EC300DB2B4F /* HomeTableViewCell.swift in Sources */,
 				09A65ABF2B215E3300DB2B4F /* TweetDataModel.swift in Sources */,
-				09A65AD12B25656500DB2B4F /* UITweetView.swift in Sources */,
 				09A65A8F2B215C6D00DB2B4F /* AppDelegate.swift in Sources */,
 				09A65AC72B23205200DB2B4F /* TweetEditViewController.swift in Sources */,
 				09A65A912B215C6D00DB2B4F /* SceneDelegate.swift in Sources */,

@@ -43,7 +43,7 @@
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
                                 </buttonConfiguration>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYN-yk-tV0" customClass="UITweetView" customModule="TweetApp" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYN-yk-tV0">
                                 <rect key="frame" x="20" y="219" width="353" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -53,27 +53,45 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoW-ED-Ivz">
+                                <rect key="frame" x="363" y="409" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今何してる？" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9g-7t-MLb">
+                                <rect key="frame" x="30.000000000000007" y="229" width="95.666666666666686" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="placeholderTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="rft-Ew-kD2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="08S-sZ-cXo"/>
                             <constraint firstItem="y7d-z9-Arv" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" multiplier="1.5" constant="2" id="5qt-vo-6kX"/>
+                            <constraint firstItem="yoW-ED-Ivz" firstAttribute="trailing" secondItem="FYN-yk-tV0" secondAttribute="trailing" constant="-10" id="Afc-gp-nAW"/>
+                            <constraint firstItem="k9g-7t-MLb" firstAttribute="leading" secondItem="FYN-yk-tV0" secondAttribute="leading" constant="10" id="Cr3-CI-bTz"/>
                             <constraint firstItem="PMg-dx-jSj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Ek9-3w-hYb"/>
                             <constraint firstItem="PMg-dx-jSj" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" multiplier="0.5" constant="1" id="IVf-Vh-bVP"/>
                             <constraint firstItem="y7d-z9-Arv" firstAttribute="top" secondItem="FYN-yk-tV0" secondAttribute="bottom" constant="40" id="Kb9-Le-Vfm"/>
+                            <constraint firstItem="k9g-7t-MLb" firstAttribute="top" secondItem="FYN-yk-tV0" secondAttribute="top" constant="10" id="QBI-2f-TxG"/>
                             <constraint firstItem="PMg-dx-jSj" firstAttribute="top" secondItem="FYN-yk-tV0" secondAttribute="bottom" constant="40" id="RLQ-r6-thi"/>
                             <constraint firstItem="FYN-yk-tV0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="XFa-TJ-mgR"/>
+                            <constraint firstItem="yoW-ED-Ivz" firstAttribute="bottom" secondItem="FYN-yk-tV0" secondAttribute="bottom" constant="-10" id="ZVA-j0-GI6"/>
                             <constraint firstItem="rft-Ew-kD2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="d0a-kD-Sh9"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="y7d-z9-Arv" secondAttribute="trailing" constant="20" id="kS5-la-uhF"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FYN-yk-tV0" secondAttribute="trailing" constant="20" id="nEK-nA-tEy"/>
-                            <constraint firstItem="FYN-yk-tV0" firstAttribute="top" secondItem="rft-Ew-kD2" secondAttribute="bottom" constant="20" id="vbt-ZW-5vG"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rft-Ew-kD2" secondAttribute="trailing" constant="20" id="zDq-gJ-RJl"/>
+                            <constraint firstItem="FYN-yk-tV0" firstAttribute="top" secondItem="rft-Ew-kD2" secondAttribute="bottom" constant="20" id="zFE-a6-z0N"/>
                         </constraints>
                         <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>
                     </view>
                     <connections>
-                        <outlet property="tweetView" destination="FYN-yk-tV0" id="c4r-kT-vnx"/>
+                        <outlet property="characterCountLabel" destination="yoW-ED-Ivz" id="HWO-xM-L30"/>
+                        <outlet property="tweetView" destination="FYN-yk-tV0" id="heo-35-uuu"/>
+                        <outlet property="tweetViewPlaceholder" destination="k9g-7t-MLb" id="wHN-PH-pl4"/>
                         <outlet property="userNameField" destination="rft-Ew-kD2" id="uJy-Jg-iGV"/>
                     </connections>
                 </viewController>
@@ -82,14 +100,12 @@
             <point key="canvasLocation" x="93.89312977099236" y="3.5211267605633805"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="FYN-yk-tV0">
-            <size key="intrinsicContentSize" width="0.0" height="36.333333333333336"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

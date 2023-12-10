@@ -34,7 +34,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemBlueColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m1p-IR-KgR"/>
+                                    <action selector="addButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RSh-UW-Nf2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -51,7 +51,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gef-Za-2Ig"/>
                     <connections>
-                        <outlet property="tweetView" destination="6wP-x1-lQu" id="aRN-NW-3v8"/>
+                        <outlet property="tweetTableView" destination="6wP-x1-lQu" id="Cfs-C5-agk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

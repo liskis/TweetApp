@@ -10,20 +10,20 @@ import Foundation
 import UIKit
 
 class HomeViewController: UIViewController {
-    @IBOutlet weak var tweetView: UITableView!
-    
+    @IBOutlet weak var tweetTableView: UITableView!
     @IBAction func addButton(_ sender: UIButton) {
         transitionToEditorView()
     }
+
     var tweetDataList: [TweetDataModel] = []
     var cellHeight: [CGFloat] = []
     
     override func viewDidLoad() {
-        tweetView.dataSource = self
-        tweetView.rowHeight = UITableView.automaticDimension
-        tweetView.estimatedRowHeight = 10000
-        tweetView.tableFooterView = UIView()
-        tweetView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
+        tweetTableView.dataSource = self
+        tweetTableView.rowHeight = UITableView.automaticDimension
+        tweetTableView.estimatedRowHeight = 10000
+        tweetTableView.tableFooterView = UIView()
+        tweetTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         setTweetData()
     }
     

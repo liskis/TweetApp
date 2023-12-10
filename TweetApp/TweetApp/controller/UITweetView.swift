@@ -7,7 +7,6 @@
 
 import UIKit
 
-// 1. TextView を継承した HintTextView クラスを作る
 @IBDesignable
 class UITweetView: UITextView {
     
@@ -27,8 +26,6 @@ class UITweetView: UITextView {
         return label
     }()
     
-    // 追記: テキストの初期値を入れるときは textViewDidChange が発火しないのでこちらのメソッドを使用する
-    // （もっと良い方法がありそうですが...）
     func setText(_ text: String) {
         self.text = text
         changeVisibility()
@@ -47,16 +44,16 @@ class UITweetView: UITextView {
     private func configure() {
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
     
-    // 2. TextView の中に Label を置く
+    // 2. UITweetView の中に placeholderLabel を置く
         addSubview(placeholderLabel)
         
     // Placeholder の表示位置を調整
         NSLayoutConstraint.activate([
-        // hintLabe とその親である HintTextView のトップの余白
+        // placeholderLabel とその親である UITweetView のトップの余白
             placeholderLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-        // hintLabe とその親である HintTextView で X 軸を一致させる
+        // placeholderLabel とその親である UITweetView で X 軸を一致させる
             placeholderLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-        // hintLabe はその親である HintTextView よりも幅を 10 小さくする（左右に 5 ずつ余白を設ける）
+        // placeholderLabel はその親である UITweetView よりも幅を 10 小さくする（左右に 5 ずつ余白を設ける）
             placeholderLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -10),
         ])
         
@@ -74,7 +71,7 @@ class UITweetView: UITextView {
 
 extension UITweetView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        // 3. TextView に文字が入力されているかどうかで Label の表示/非表示を切り替える
+        // 3. UITweetView に文字が入力されているかどうかで placeholderLabel の表示/非表示を切り替える
         changeVisibility()
     }
 }
