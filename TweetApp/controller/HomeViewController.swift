@@ -39,11 +39,10 @@ class HomeViewController: UIViewController {
             for _ in 0...i {
                 tweet.append("このツイートは\(i)番目のツイートです。")
             }
-            let tweetData = TweetDataModel(
-                userName: "testUser(\(i))",
-                tweet: tweet,
-                created: Date()
-            )
+            let tweetData = TweetDataModel()
+            tweetData.userName = "testUser(\(i))"
+            tweetData.tweet = tweet
+            tweetData.created = Date()
             tweetDataList.append(tweetData)
         }
     }
