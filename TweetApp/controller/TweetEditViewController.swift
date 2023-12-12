@@ -6,24 +6,37 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TweetEditViewController: UIViewController {
+    
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var tweetView: UITextView!
-    @IBOutlet weak var characterCountLabel: UILabel!
+    @IBOutlet weak var tweetBtn: UIButton!
+    @IBOutlet weak var tweetCountLabel: UILabel!
     @IBOutlet weak var tweetViewPlaceholder: UILabel!
     
-    let maxCharacterCount: Int = 140
+    
+    @IBAction func tweetBtn(_ sender: UIButton) {
+        if (userNameField.text! != "" ) && (tweetView.text! != "") {
+            saveData()
+        }
+    }
+    
+    let tweetData = TweetDataModel()
+    let maxTweetCount: Int = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tweetView.delegate = self
-        configueUserNameField()
+        configueUserNameView()
         configureTweetView()
+        configureTweetBtn()
         setDoneButton()
+        userNameField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
-    func configueUserNameField(){
+    func configueUserNameView(){
         userNameField.layer.borderColor = UIColor.darkGray.cgColor
         userNameField.layer.borderWidth = 1.0
         userNameField.layer.cornerRadius = 5.0
@@ -33,6 +46,15 @@ class TweetEditViewController: UIViewController {
         tweetView.layer.borderColor = UIColor.darkGray.cgColor
         tweetView.layer.borderWidth = 1.0
         tweetView.layer.cornerRadius = 5.0
+    }
+    
+    // つぶやくボタンの背景を変更
+    func configureTweetBtn(){
+        if userNameField.text == ""  || tweetView.text == "" {
+            tweetBtn.tintColor = .lightGray
+        } else {
+            tweetBtn.tintColor = .systemBlue
+        }
     }
     
     @objc func tapDoneButton() {
@@ -46,30 +68,49 @@ class TweetEditViewController: UIViewController {
         tweetView.inputAccessoryView = toolBar
         userNameField.inputAccessoryView = toolBar
     }
+    
+    @objc func textFieldDidChange(sender: UITextField) {
+        configureTweetBtn()
+    }
+    
+    func saveData(){
+        let realm = try! Realm()
+        try! realm.write{
+            tweetData.userName = userNameField.text!
+            tweetData.tweet = tweetView.text!
+            tweetData.created = Date()
+            realm.add(tweetData)
+        }
+        print(tweetData)
+    }
 }
+
+
 
 extension TweetEditViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        // placeholderの表示非表示
-        if textView.text.isEmpty {
-            tweetViewPlaceholder.isHidden = false
-        } else {
-            tweetViewPlaceholder.isHidden = true
-        }
-        
-        // 文字数をカウントして表示
-        characterCountLabel.text = String(format: "%d/%d",textView.text.count, maxCharacterCount)
-        if textView.text.count > maxCharacterCount {
-            characterCountLabel.textColor = .red
-        } else {
-            characterCountLabel.textColor = .systemGray
-        }
+            // placeholderの表示非表示
+            if textView.text.isEmpty {
+                tweetViewPlaceholder.isHidden = false
+            } else {
+                tweetViewPlaceholder.isHidden = true
+            }
+            
+            // 文字数をカウントして表示
+            tweetCountLabel.text = String(format: "%d/%d",textView.text.count, maxTweetCount)
+            if textView.text.count > maxTweetCount {
+                tweetCountLabel.textColor = .red
+            } else {
+                tweetCountLabel.textColor = .systemGray
+            }
+            configureTweetBtn()
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // 文字数が140を超えると入力できなくなる
-        let newCharacterCount = textView.text.count - range.length + text.count
-        return (newCharacterCount <= maxCharacterCount)
+        var check: Bool = true
+        let textCount = textView.text.count - range.length + text.count
+        check = textCount <= maxTweetCount
+        return check
     }
 
 }
