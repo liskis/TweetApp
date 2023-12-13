@@ -8,6 +8,10 @@
 import UIKit
 import RealmSwift
 
+protocol TweetEditViewControllerDelegate {
+    func recordUpdate()
+}
+
 class TweetEditViewController: UIViewController {
     
     @IBOutlet weak var userNameField: UITextField!
@@ -16,36 +20,41 @@ class TweetEditViewController: UIViewController {
     @IBOutlet weak var tweetCountLabel: UILabel!
     @IBOutlet weak var tweetViewPlaceholder: UILabel!
     
-    
+    @IBAction func chancelBtn(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
     @IBAction func tweetBtn(_ sender: UIButton) {
         if (userNameField.text! != "" ) && (tweetView.text! != "") {
             saveData()
         }
     }
-    
-    let tweetData = TweetDataModel()
+    var delegate: TweetEditViewControllerDelegate?
+    var tweetData = TweetDataModel()
     let maxTweetCount: Int = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tweetView.delegate = self
-        configueUserNameView()
+        configueUserNameField()
         configureTweetView()
+        displayPlaceholder()
         configureTweetBtn()
         setDoneButton()
         userNameField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
-    func configueUserNameView(){
+    func configueUserNameField(){
         userNameField.layer.borderColor = UIColor.darkGray.cgColor
         userNameField.layer.borderWidth = 1.0
         userNameField.layer.cornerRadius = 5.0
+        userNameField.text = tweetData.userName
     }
     
     func configureTweetView(){
         tweetView.layer.borderColor = UIColor.darkGray.cgColor
         tweetView.layer.borderWidth = 1.0
         tweetView.layer.cornerRadius = 5.0
+        tweetView.text = tweetData.tweet
     }
     
     // つぶやくボタンの背景を変更
@@ -72,6 +81,14 @@ class TweetEditViewController: UIViewController {
     @objc func textFieldDidChange(sender: UITextField) {
         configureTweetBtn()
     }
+    // placeholderの表示非表示
+    func displayPlaceholder(){
+        if tweetView.text.isEmpty {
+            tweetViewPlaceholder.isHidden = false
+        } else {
+            tweetViewPlaceholder.isHidden = true
+        }
+    }
     
     func saveData(){
         let realm = try! Realm()
@@ -81,35 +98,27 @@ class TweetEditViewController: UIViewController {
             tweetData.created = Date()
             realm.add(tweetData)
         }
-        print(tweetData)
+        delegate?.recordUpdate()
+        dismiss(animated: true)
     }
 }
 
-
-
 extension TweetEditViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-            // placeholderの表示非表示
-            if textView.text.isEmpty {
-                tweetViewPlaceholder.isHidden = false
-            } else {
-                tweetViewPlaceholder.isHidden = true
-            }
-            
-            // 文字数をカウントして表示
-            tweetCountLabel.text = String(format: "%d/%d",textView.text.count, maxTweetCount)
-            if textView.text.count > maxTweetCount {
-                tweetCountLabel.textColor = .red
-            } else {
-                tweetCountLabel.textColor = .systemGray
-            }
-            configureTweetBtn()
+        displayPlaceholder()
+        // 文字数をカウントして表示
+        tweetCountLabel.text = String(format: "%d/%d",textView.text.count, maxTweetCount)
+        if textView.text.count > maxTweetCount {
+            tweetCountLabel.textColor = .red
+        } else {
+            tweetCountLabel.textColor = .systemGray
+        }
+        configureTweetBtn()
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        var check: Bool = true
         let textCount = textView.text.count - range.length + text.count
-        check = textCount <= maxTweetCount
+        let check = textCount <= maxTweetCount
         return check
     }
 
