@@ -20,7 +20,7 @@ class TweetEditViewController: UIViewController {
         dismiss(animated: true)
     }
     @IBAction func tweetBtn(_ sender: UIButton) {
-        if (userNameField.text! != "" ) && (tweetView.text! != "") {
+        if userNameField.text! != "" && tweetView.text! != "" && tweetView.text.count <= maxTweetCount {
             saveData()
         }
     }
@@ -49,9 +49,9 @@ class TweetEditViewController: UIViewController {
         tweetView.layer.cornerRadius = 5.0
         tweetView.text = tweetData.tweet
     }
-    // つぶやくボタンの背景を変更
+    // つぶやくボタンの背景色を変更
     func configureTweetBtn(){
-        if userNameField.text == ""  || tweetView.text == "" {
+        if userNameField.text == "" || tweetView.text == "" || tweetView.text.count > maxTweetCount {
             tweetBtn.tintColor = .lightGray
         } else {
             tweetBtn.tintColor = .systemBlue
@@ -103,10 +103,5 @@ extension TweetEditViewController: UITextViewDelegate {
             tweetCountLabel.textColor = .systemGray
         }
         configureTweetBtn()
-    }
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let textCount = textView.text.count - range.length + text.count
-        let check = textCount <= maxTweetCount
-        return check
     }
 }

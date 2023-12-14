@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vac-Ew-vL9">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -27,7 +28,7 @@
                                 <state key="normal">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="filled" image="羽ペン" title="" imagePadding="0.0" cornerStyle="capsule" buttonSize="large">
+                                <buttonConfiguration key="configuration" style="filled" image="fetherPen" title="" imagePadding="0.0" cornerStyle="capsule" buttonSize="large">
                                     <backgroundConfiguration key="background">
                                         <color key="backgroundColor" name="AccentColor"/>
                                     </backgroundConfiguration>
@@ -79,7 +80,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="羽ペン" width="50" height="50"/>
+        <image name="fetherPen" width="50" height="50"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
