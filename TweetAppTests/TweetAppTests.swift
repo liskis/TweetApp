@@ -35,7 +35,7 @@ final class TweetAppTests: XCTestCase {
     
     func testCheckCharacterLimit() throws {
             let tweetEditViewController = TweetEditViewController()
-            let result = tweetEditViewController.checkCharacterLimit(textCount: 140)
+            let result = tweetEditViewController.checkCharacterLimit(textCount: 141)
             XCTAssertTrue(result)
         }
 
