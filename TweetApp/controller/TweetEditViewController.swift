@@ -38,7 +38,7 @@ class TweetEditViewController: UIViewController {
         userNameField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     func checkCharacterLimit(textCount: Int) -> Bool {
-        return textCount <= maxTweetCount && textCount > 0
+        return 1...maxTweetCount ~= textCount
     }
     func configueUserNameField(){
         userNameField.layer.borderColor = UIColor.darkGray.cgColor
