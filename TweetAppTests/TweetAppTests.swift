@@ -32,5 +32,11 @@ final class TweetAppTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testCheckCharacterLimit() throws {
+            let tweetEditViewController = TweetEditViewController()
+            let result = tweetEditViewController.checkCharacterLimit(textCount: 140)
+            XCTAssertTrue(result)
+        }
 
 }
