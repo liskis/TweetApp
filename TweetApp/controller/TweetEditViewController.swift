@@ -20,7 +20,7 @@ class TweetEditViewController: UIViewController {
         dismiss(animated: true)
     }
     @IBAction func tweetBtn(_ sender: UIButton) {
-        if userNameField.text! != "" && tweetView.text! != "" && tweetView.text.count <= maxTweetCount {
+        if checkCharacterLimit(userNameTextCount: userNameField.text!.count, tweetTextCount: tweetView.text!.count) {
             saveData()
         }
     }
@@ -37,6 +37,13 @@ class TweetEditViewController: UIViewController {
         setDoneButton()
         userNameField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
+    func checkCharacterLimit(userNameTextCount: Int, tweetTextCount: Int) -> Bool {
+        var result: Bool = false
+        if userNameTextCount > 0 && 1...maxTweetCount ~= tweetTextCount {
+            result = true
+        }
+        return result
+    }
     func configueUserNameField(){
         userNameField.layer.borderColor = UIColor.darkGray.cgColor
         userNameField.layer.borderWidth = 1.0
@@ -51,10 +58,10 @@ class TweetEditViewController: UIViewController {
     }
     // つぶやくボタンの背景色を変更
     func configureTweetBtn(){
-        if userNameField.text == "" || tweetView.text == "" || tweetView.text.count > maxTweetCount {
-            tweetBtn.tintColor = .lightGray
-        } else {
+        if checkCharacterLimit(userNameTextCount: userNameField.text!.count, tweetTextCount: tweetView.text!.count) {
             tweetBtn.tintColor = .systemBlue
+        } else {
+            tweetBtn.tintColor = .lightGray
         }
     }
     @objc func tapDoneButton() {
